@@ -2,13 +2,56 @@ package leetCode.Test01_数组链表跳表;
 
 import com.sun.xml.internal.ws.api.pipe.NextAction;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        int i = climbStairs1(4);
-        System.out.println(i);
+
+
     }
+
+    //7.在排序数组中查找元素的第一个和最后一个位置
+    
+
+    //6. 搜索插入位置
+    public static int searchInsert(int[] nums, int target) {
+        int low = 0;int high = nums.length-1;
+        int middle = 0;
+        while(low <= high){
+            middle = (high - low)/2 + low;
+            if(nums[middle]==target){
+                return middle;
+            }else if(nums[middle] > target){
+                high = middle -1;
+            }else{
+                low = middle +1;
+            }
+        }
+        for(int i = 0;i < nums.length;i++){
+            if(nums[i] > target){
+                return i;
+            }
+        }
+        return nums.length;
+
+    }
+
+
+    //5.移除元素
+     public static int removeElement(int[] nums, int val) {
+        int i = 0,j = 0;
+        for(;j < nums.length;j++){
+            if(nums[j]!=val){
+                nums[i] = nums[j];
+                nums[j] = 0;
+                i++;
+            }
+        }
+        return i;
+    }
+
+
     //4. 翻转单链表  (2)迭代解法
     public ListNode reverseList1(ListNode head) {
         ListNode pre= null;
@@ -73,7 +116,7 @@ public class Test {
         int len = height.length;
         int i = 0,j = len-1;
         while (i<j){
-            int minh = height[i]<height[j]?height[i--]:height[j++];
+            int minh = height[i]<height[j]?height[i++]:height[j--];
             int area = minh*(j-i+1);
             max = max>area?max:area;
         }
@@ -143,7 +186,6 @@ public class Test {
                 copy[k++]=nums[i];
             }
         }
-
         for (int i = 0; i < len; i++) {
             nums[i]=copy[i];
         }
